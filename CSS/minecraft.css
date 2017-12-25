@@ -1,6 +1,47 @@
+@font-face {
+    font-family:'Silkscreen';
+    src:url('./fonts/slkscrb.ttf') format('truetype');
+}
 #gameboard{
     background-color:lightblue;
-    margin:auto;
+    display:inline-block;
+}
+#sidebar{
+    background-color:black;
+    width:120px;
+    height:100vh;
+    display:inline-block;
+    position:absolute;
+    right:0;
+    top:0;
+}
+.toolbelt{
+    width:100px;
+    margin:50px auto;
+}
+#sidebar .tool{
+    width:75px;
+    height:85px;
+    border:1px solid white;
+    background-size:contain;
+    background-position:top;
+    background-repeat:no-repeat;
+    margin:10px;
+    color:white;
+    font-size:13px;
+    font-family:'Silkscreen',Impact,'sans-serif';
+    text-align:center;
+    display:flex;
+    flex-direction:column-reverse;
+}
+#sidebar .tool:hover{
+    background-color:blue;
+}
+.material{
+    width:40px;
+    height:40px;
+    border:1px solid white;
+    margin:15px auto;
 }
 .block{
     width:48px;
