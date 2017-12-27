@@ -2,9 +2,46 @@
   <head>
     <title>Minecraft</title>
     <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous">
+    </script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!--Personalized CSS-->
     <link rel="stylesheet" type="text/css" href="./CSS/minecraft.css">
   </head>
   <body>
+      <div class="modal" tabindex="-1" role="dialog" id="inventory" style="display:none;text-align:center;">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h3 class="modal-title">Inventory</h3>
+                  </div>
+                  <div class="modal-body">
+                    <div class="materials">
+                      <div class="material grass"></div>
+                      <div class="material dirt"></div>
+                      <div class="material leaf"></div>
+                      <div class="material tree"></div>
+                      <div class="material rock"></div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button id="close" type="button" class="btn" data-dismiss="modal">Dismiss</button>
+                  </div>
+              </div>
+          </div>
+      </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>      
     <script type="text/javascript" src="./minecraft.js"></script>      

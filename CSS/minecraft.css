@@ -89,7 +89,21 @@
     background-size:contain;
     background-position:top;
 }
-
-#109,#125,#141{
-    background-color:white;
+.modal{
+    font-family:'Silkscreen';
+}
+.materials{
+    height:55px;
+    margin:0px 110px;
+}
+.materials .material{
+    height:50px;
+    width:50px;
+    float:left;
+    margin:auto 5px;
+    color:white;
+    font-size:24px;
+}
+.materials .material:hover{
+    box-shadow:0px 0px 0px 3px blue inset;
 }
