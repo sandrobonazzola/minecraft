@@ -144,6 +144,7 @@ Minecraft.build = function (rawMaterial) {
 };
 //select tool
 Minecraft.selectTool = function () {
+    $("#"+Minecraft.currentTool).css("background-color", "black");
     if ($(this).attr("id") == "pickaxe") {
         Minecraft.currentTool = "pickaxe";
     }
@@ -153,7 +154,9 @@ Minecraft.selectTool = function () {
     else {
         Minecraft.currentTool = "axe";
     }
+     $("#"+Minecraft.currentTool).css("background-color", "blue");
 };
+
 Minecraft.play = function (event) {
     //for pickaxe and rock
     if ((Minecraft.currentTool === "pickaxe") && ($(this).attr("class") === "block rock")) {
@@ -189,8 +192,17 @@ Minecraft.play = function (event) {
         $(".materials.leaf").text(leafCount);
     }
     else {
-        $("Minecraft.currentTool").css("backgroundColor", "red");
-        console.log("flash red!!!");
+        var flashCounter = 0;
+        var flashTimer = setInterval(function(){   
+            $("#"+Minecraft.currentTool).css("background-color", "red");
+            setTimeout(function(){
+                $("#"+Minecraft.currentTool).css("background-color", "blue")
+            },250);
+            flashCounter++;
+            if(flashCounter >2){
+                clearInterval(flashTimer);
+            } 
+        },500);
     }
 };
 
