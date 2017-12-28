@@ -7,12 +7,14 @@ var dirtCount = 0;
 var grassCount = 0;
 
 Minecraft.init = function () {
-    Minecraft.currentTool = "pickaxe";
     Minecraft.createBoard();
     Minecraft.setBackGround();
     Minecraft.blocks = $(".block");
     Minecraft.blocks.on("click", Minecraft.play);
     $(".tool").on("click", Minecraft.selectTool);
+    $(".materials").on("click", Minecraft.selectTool);
+    Minecraft.currentTool = "pickaxe";
+    $("#"+Minecraft.currentTool).css("background-color", "blue");
 };
 
 Minecraft.createBoard = function () {
@@ -39,7 +41,7 @@ Minecraft.createBoard = function () {
     toolbelt.addClass("toolbelt");
     sidebar.append(toolbelt);
 
-    var toolbox = ["pickaxe", "shovel", "axe"];
+    var toolbox = ["pickaxe", "shovel", "axe","empty"];
     for (var i = 0; i < toolbox.length; i++) {
         var tool = $("<div/>");
         tool.css("backgroundImage", "url('./images/" + toolbox[i] + ".png')");
@@ -48,6 +50,7 @@ Minecraft.createBoard = function () {
         tool.text(toolbox[i].toUpperCase());
         toolbelt.append(tool);
     }
+    $("#empty").css("display","none");
     var inventory = ["tree", "leaf", "dirt", "grass", "rock"];
     var bank = $("<div/>");
     bank.addClass("bank");
@@ -117,7 +120,6 @@ Minecraft.setBackGround = function () {
 //Build world
 Minecraft.build = function (rawMaterial) {
     console.log(rawMaterial);
-    Minecraft.currentTool = "";
     $(".block").on("click", function () {
         if (rawMaterial === "leaf" && $(this).attr("class") === "block" && leafCount > 0) {
             $(this).addClass(rawMaterial);
@@ -151,8 +153,11 @@ Minecraft.selectTool = function () {
     else if ($(this).attr("id") == "shovel") {
         Minecraft.currentTool = "shovel";
     }
-    else {
+    else if ($(this).attr("id") == "axe"){
         Minecraft.currentTool = "axe";
+    }
+    else{
+        Minecraft.currentTool="empty";
     }
      $("#"+Minecraft.currentTool).css("background-color", "blue");
 };
