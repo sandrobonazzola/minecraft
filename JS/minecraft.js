@@ -55,18 +55,38 @@ Minecraft.createBoard = function () {
     for (var i = 0; i < inventory.length; i++) {
         var element = $("<div/>");
         element.addClass("materials " + inventory[i]);
-        element.on('click', function () {
-            $(".block").on("click", function () {
-                Minecraft.build(inventory[i]);
-            });
-        });
         bank.append(element);
     }
     $(".materials.tree").text(treeCount);
+    $(".materials.tree").on("click", function () {
+        if (treeCount > 0) {
+            Minecraft.build("tree");
+        }
+    });
     $(".materials.leaf").text(leafCount);
+    $(".materials.leaf").on("click", function () {
+        if (leafCount > 0) {
+            Minecraft.build("leaf");
+        }
+    });
     $(".materials.rock").text(rockCount);
+    $(".materials.rock").on("click", function () {
+        if (rockCount > 0) {
+            Minecraft.build("rock");
+        }
+    });
     $(".materials.dirt").text(dirtCount);
+    $(".materials.dirt").on("click", function () {
+        if (dirtCount > 0) {
+            Minecraft.build("dirt");
+        }
+    });
     $(".materials.grass").text(grassCount);
+    $(".materials.grass").on("click", function () {
+        if (grassCount > 0) {
+            Minecraft.build("grass");
+        }
+    });
 
     var counter = 0;
     for (var i = 0; i < boardHeight / 50; i++) {
@@ -95,23 +115,28 @@ Minecraft.setBackGround = function () {
 };
 
 //Build world
-Minecraft.build = function (element) {
-    console.log("BUILD");
+Minecraft.build = function (rawMaterial) {
+    console.log(rawMaterial);
+    Minecraft.currentTool = "";
     $(".block").on("click", function () {
-        $(this).addClass(element);
-        if (element === "leaf") {
+        if (rawMaterial === "leaf" && $(this).attr("class") === "block" && leafCount > 0) {
+            $(this).addClass(rawMaterial);
             leafCount--;
             $(".materials.leaf").text(leafCount);
-        } else if (element === "tree") {
+        } else if (rawMaterial === "tree" && $(this).attr("class") === "block" && treeCount > 0) {
+            $(this).addClass(rawMaterial);
             treeCount--;
             $(".materials.tree").text(treeCount);
-        } else if (element === "rock") {
+        } else if (rawMaterial === "rock" && $(this).attr("class") === "block" && rockCount > 0) {
+            $(this).addClass(rawMaterial);
             rockCount--;
             $(".materials.rock").text(rockCount);
-        } else if (element === "dirt") {
+        } else if (rawMaterial === "dirt" && $(this).attr("class") === "block" && dirtCount > 0) {
+            $(this).addClass(rawMaterial);
             dirtCount--;
             $(".materials.dirt").text(dirtCount);
-        } else if (element === "grass") {
+        } else if (rawMaterial === "grass" && $(this).attr("class") === "block" && grassCount > 0) {
+            $(this).addClass(rawMaterial);
             grassCount--;
             $(".materials.grass").text(grassCount);
         }
