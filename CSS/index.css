@@ -1,0 +1,39 @@
+@font-face {
+    font-family:'Silkscreen';
+    src:url('./fonts/slkscrb.ttf') format('truetype');
+}
+.modal{
+    font-family: 'Silkscreen';
+    text-align: center;
+    margin: auto;
+}
+body{
+    background-image: url('../images/bg2.jpg');
+    background-size:cover;
+    background-position: top;
+    text-align: center;
+}
+
+h5{
+    font-size: 42px;
+}
+.button{
+    background-color: limegreen;
+    font-family:"Silkscreen";
+    font-size: 24px;
+    margin: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#close{
+    margin: auto;
+    display: block;
+}
+img{
+    width:450px;
+    margin-bottom:30px;
+}
+.modal-body{
+    font-size:20px;
+}
