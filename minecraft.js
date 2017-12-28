@@ -1,11 +1,14 @@
-var ableToClick = false;
-var Minecraft = {};
+var Minecraft = {}
+var currentTool="";
 
 Minecraft.init = function(){
+    Minecraft.currentTool = "pickaxe";
     Minecraft.createBoard();
     Minecraft.setBackGround();
-    Minecraft.play();
-};
+    Minecraft.blocks = $(".block");
+     Minecraft.blocks.on("click",Minecraft.play);
+    $(".tool").on("click", Minecraft.selectTool);
+}
 
 Minecraft.createBoard = function(){
     var boardWidth = "800";
@@ -69,34 +72,49 @@ Minecraft.setBackGround = function(){
     $('#114,#115,#130,#131').addClass('rock');
     $('#35,#36,#37,#38,#34,#52,#51,#53,#21,#22,#20,#39').css('backgroundColor','white');
 };
-
-Minecraft.showInventory=function(){
-    $("#inventory").css("display","block");
-    $("#close").on("click",function(){
-        ($("#inventory").css("display","none"));
-    });
+//select tool
+Minecraft.selectTool = function(){
+   if ($(this).attr("id") == "pickaxe"){
+        Minecraft.currentTool = "pickaxe";
+    }
+    else if($(this).attr("id") == "shovel"){
+        Minecraft.currentTool = "shovel";
+    }
+    else {
+        Minecraft.currentTool = "axe";
+    }
+    console.log(Minecraft.currentTool);
 };
-Minecraft.play = function(){    
+Minecraft.play = function(event){   
     //for pickaxe and rock
-    Minecraft.mine = function(){
-      // if((tool.id == "pickaxe") && (this.className == "rock")){
-      //    ableToClick = true;
-      //    if (ableToClick = true){
-      //        $(this).removeClass("rock");
-      //        $(".צaterial").addClass("rock");
-      //    }
-      // }
-      // else {
-
-      // }
+    if((Minecraft.currentTool === "pickaxe") && ($(this).attr("class") === "block rock")){
+        $(this).removeClass("rock");
+        $(".material").addClass("rock");
     }
-    function dig(){
-        //for shovel and dirt
+        //for shovel and dirt/grass
+    else if((Minecraft.currentTool === "shovel") && ($(this).attr("class") === "block dirt")){
+        $(this).removeClass("dirt");
+        $(".material").addClass("dirt");
     }
-    function chop(){
+    else if((Minecraft.currentTool === "shovel") && ($(this).attr("class") === "block grass")){
+        $(this).removeClass("grass");
+        $(".material").addClass("grass");
+    }
         //for axe and tree/leaf
+    else if((Minecraft.currentTool === "axe") && ($(this).attr("class") === "block tree")){
+        $(this).removeClass("tree");
+        $(".material").addClass("tree");
     }
-    /*function build(){
+    else if((Minecraft.currentTool === "axe") && $(this).attr("class") === "block leaf"){
+            $(this).removeClass("leaf");
+            $(".material").addClass("leaf");
+    }
+    else{
+        $("Minecraft.currentTool").css("backgroundColor","red");
+        console.log("flash red!!!");
+    }
+
+     /*function build(){
         //Minecraft.showInventory();
         $(".material").css("border","1px solid yellow");
         var currentMaterial=$(".material").classList.item(1);
@@ -106,11 +124,13 @@ Minecraft.play = function(){
                 $(this).addClass("backgroundImage",currentMaterial);
             }
         });
-    }
-    function addToInventory(){
-
-    }*/
 }
+Minecraft.showInventory=function(){
+    $("#inventory").css("display","block");
+    $("#close").on("click",function(){
+        ($("#inventory").css("display","none"));
+    });
+};*/
 
 
 $(document).ready(function(){
