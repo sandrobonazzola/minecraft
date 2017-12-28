@@ -13,7 +13,7 @@ Minecraft.init = function () {
     Minecraft.blocks = $(".block");
     Minecraft.blocks.on("click", Minecraft.play);
     $(".tool").on("click", Minecraft.selectTool);
-}
+};
 
 Minecraft.createBoard = function () {
     var boardWidth = "800";
@@ -65,6 +65,7 @@ Minecraft.createBoard = function () {
     }
 };
 
+//Default background on new game
 Minecraft.setBackGround = function () {
     for (var i = 192; i > 160; i--) {
         $('#' + i).addClass('dirt');
@@ -88,7 +89,6 @@ Minecraft.selectTool = function () {
     else {
         Minecraft.currentTool = "axe";
     }
-    console.log(Minecraft.currentTool);
 };
 Minecraft.play = function (event) {
     //for pickaxe and rock
@@ -123,17 +123,32 @@ Minecraft.play = function (event) {
         $("Minecraft.currentTool").css("backgroundColor", "red");
         console.log("flash red!!!");
     }
-}
-Minecraft.build=function(element) {
+};
+Minecraft.build = function (element) {
+    Minecraft.currentTool = "";
     $(".material").css("border", "1px solid yellow");
+    $("#inventory").css("display", "none");
+
+    var count;
+    if (element === "leaf") {
+        count = leafCount;
+    } else if (element === "tree") {
+        count = treeCount;
+    } else if (element === "rock") {
+        count = rockCount;
+    } else if (element === "dirt") {
+        count = dirtCount;
+    } else if (element === "grass") {
+        count = grassCount;
+    }
     $(".block").on("click", function () {
+        if(count>0 && $(this).attr("class")==="block"){
             $(this).addClass(element);
-            //reduce counter
-            //exit function if counter===0
+            count--;
+        }
     });
-}
+};
 Minecraft.showInventory = function () {
-    var invModal = $("#inventory");
     var material = $(".material");
 
     var grassInv = $(".rawMat.grass");
@@ -141,9 +156,7 @@ Minecraft.showInventory = function () {
     grassInv.on("click", function () {
         if (grassCount > 0) {
             material.css("backgroundImage", "url('./images/grass.png'");
-            Minecraft.currentTool = material;
             Minecraft.build("grass");
-            invModal.css("display", "none");
         }
     });
     var dirtInv = $(".rawMat.dirt");
@@ -151,9 +164,7 @@ Minecraft.showInventory = function () {
     dirtInv.on("click", function () {
         if (dirtCount > 0) {
             material.css("backgroundImage", "url('./images/dirt.png')");
-            Minecraft.currentTool = material;
             Minecraft.build("dirt");
-            invModal.css("display", "none");
         }
     });
     var leafInv = $(".rawMat.leaf");
@@ -161,9 +172,7 @@ Minecraft.showInventory = function () {
     leafInv.on("click", function () {
         if (leafCount > 0) {
             material.css("backgroundImage", "url('./images/leaf.png')");
-            Minecraft.currentTool = material;
             Minecraft.build("leaf");
-            invModal.css("display", "none");
         }
     });
     var treeInv = $(".rawMat.tree");
@@ -171,9 +180,7 @@ Minecraft.showInventory = function () {
     treeInv.on("click", function () {
         if (treeCount > 0) {
             material.css("backgroundImage", "url('./images/tree.png')");
-            Minecraft.currentTool = material;
             Minecraft.build("tree");
-            invModal.css("display", "none");
         }
     });
     var rockInv = $(".rawMat.rock");
@@ -181,13 +188,11 @@ Minecraft.showInventory = function () {
     rockInv.on("click", function () {
         if (rockCount > 0) {
             material.css("backgroundImage", "url('./images/rock.png')");
-            Minecraft.currentTool = material;
             Minecraft.build("rock");
-            invModal.css("display", "none");
         }
     });
 
-    invModal.css("display", "block");
+    $("#inventory").css("display", "block");
     $("#close").on("click", function () {
         invModal.css("display", "none");
     });
