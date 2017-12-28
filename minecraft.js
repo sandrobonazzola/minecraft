@@ -7,7 +7,7 @@ Minecraft.init = function(){
     Minecraft.createBoard();
     Minecraft.setBackGround();
     Minecraft.blocks = $(".block");
-     Minecraft.blocks.on("click",Minecraft.play);
+    Minecraft.blocks.on("click",Minecraft.play);
     $(".tool").on("click", Minecraft.selectTool);
 }
 
@@ -74,7 +74,8 @@ Minecraft.setBackGround = function(){
 };
 //select tool
 Minecraft.selectTool = function(){
-   if ($(this).attr("id") == "pickaxe"){
+    $("#"+Minecraft.currentTool).css("background-color", "black");
+    if ($(this).attr("id") == "pickaxe"){
         Minecraft.currentTool = "pickaxe";
     }
     else if($(this).attr("id") == "shovel"){
@@ -83,7 +84,7 @@ Minecraft.selectTool = function(){
     else {
         Minecraft.currentTool = "axe";
     }
-    console.log(Minecraft.currentTool);
+    $("#"+Minecraft.currentTool).css("background-color", "blue");
 };
 
 Minecraft.play = function(event){   
@@ -111,8 +112,18 @@ Minecraft.play = function(event){
             $(".material").addClass("leaf");
     }
     else{
-        $("Minecraft.currentTool").css("backgroundColor","red");
-        console.log("flash red!!!");
+        //$("#"+Minecraft.currentTool).css("background-color", "red");
+        var flashCounter = 0;
+        var flashTimer = setInterval(function(){   
+            $("#"+Minecraft.currentTool).css("background-color", "red");
+            setTimeout(function(){
+                $("#"+Minecraft.currentTool).css("background-color", "blue")
+            },250);
+            flashCounter++;
+            if(flashCounter >2){
+                clearInterval(flashTimer);
+            } 
+        },500);
     }
 
     function build(){
