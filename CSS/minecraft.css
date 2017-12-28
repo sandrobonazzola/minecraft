@@ -59,11 +59,27 @@
     height:50px;
     float:left;
 }
-
 .block:hover{
     box-shadow:0px 0px 0px 1px rgba(0,0,0,1) inset;
 }
-
+.bank{
+    width:100px;
+    margin:auto;
+    font-family:'Silkscreen';
+}
+.bank .materials{
+    height:45px;
+    width:45px;
+    float:left;
+    margin:2px;
+    color:white;
+    text-align:center;
+    font-size:22px;
+    border:1px solid white;
+}
+.bank .materials:hover{
+    border:1px solid gold;
+}
 .leaf{
     background-image:url("../images/leaf.png");
     background-size:contain;
@@ -92,22 +108,4 @@
     background-image:url("../images/grass.png");
     background-size:contain;
     background-position:top;
-}
-.modal{
-    font-family:'Silkscreen';
-}
-.materials{
-    height:55px;
-    margin:0px 130px;
-}
-.materials .rawMat{
-    height:50px;
-    width:50px;
-    float:left;
-    margin:auto 5px;
-    color:white;
-    font-size:24px;
-}
-.materials .rawMat:hover{
-    box-shadow:0px 0px 0px 3px blue inset;
 }
