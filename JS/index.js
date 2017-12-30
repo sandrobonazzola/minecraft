@@ -14,8 +14,9 @@ for(var i=0;i<buttonArray.length;i++){
 }
 
 $("#Start").text("Start Game");
-var link=$('<a href="minecraft.html"></a>');
-$("#Start").append(link);
+$("#Start").on("click",function(){
+    window.location.href="minecraft.html";
+});
 
 $("#Tutorial").on("click",function(){
     $(".modal").css("display","block");
